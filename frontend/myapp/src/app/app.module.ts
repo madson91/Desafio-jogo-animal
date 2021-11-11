@@ -12,7 +12,6 @@ import { MensagemComponent } from './views/mensagem/mensagem.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './views/home/home.component';
-import { Mensagem2Component } from './views/mensagem2/mensagem2.component';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { Mensagem2Component } from './views/mensagem2/mensagem2.component';
     FooterComponent,
     NavComponent,
     MensagemComponent,
-    HomeComponent,
-    Mensagem2Component
+    HomeComponent
     
   ],
   imports: [
