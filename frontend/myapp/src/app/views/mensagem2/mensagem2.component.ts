@@ -13,8 +13,8 @@ export class Mensagem2Component implements OnInit {
   ngOnInit(): void {
   }
 
-  yes():void{
-    this.router.navigate(['/']);
+  respostaYes():void{
+    this.router.navigate(['/mensagem']);
   }
 
   no():void{
