@@ -16,7 +16,6 @@ public class Instantiation implements CommandLineRunner {
 	@Autowired
 	private AnimalRepository animalRepository;
 	
-	
 	@Override
 	public void run(String... args) throws Exception {
 		

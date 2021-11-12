@@ -17,5 +17,13 @@ public class AnimalService {
 	public List<Animal> getAnimais() {
 		return animalRepository.findAll();
 	}
+	
+	public List<Animal> getAnimaisByTipoCaracNotNull(int tipo) {
+		return animalRepository.getAnimaisByTipoCaracNotNull((byte) tipo);
+	}
 
+	public Animal createAnimal(Animal animal) {
+		
+		return animalRepository.save(animal);
+	}
 }
