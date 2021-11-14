@@ -16,6 +16,10 @@ public interface AnimalRepository extends JpaRepository<Animal, Long>{
 			+ "obj.caracteristica != null GROUP BY obj.id")
 	List<Animal> getAnimaisByTipoCaracNotNull(@Param("tipo") byte tipo);
 	
+	@Query("SELECT obj FROM Animal AS obj where obj.tipo = :tipo "
+			+ "GROUP BY obj.id")
+	List<Animal> getAnimaisByTipo(@Param("tipo") byte tipo);
+	
 //	@Query("SELECT  com.madson.jogoanimal.entities.Animal FROM Animal AS obj where obj.tipo = 2 and "
 //			+ "obj.caracteristica != null GROUP BY obj.id")
 //	List<Animal> getAnimaisTerraByCaracteristica();

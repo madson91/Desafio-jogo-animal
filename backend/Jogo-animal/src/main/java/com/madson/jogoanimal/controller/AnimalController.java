@@ -1,5 +1,6 @@
 package com.madson.jogoanimal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,16 @@ public class AnimalController {
 	@GetMapping(value = "/{tipo}")
 	public ResponseEntity<List<Animal>> getAnimalByTipo(@PathVariable("tipo") int tipo) {
 		
-		List<Animal> list = animalService.getAnimaisByTipoCaracNotNull(tipo);
+		List<Animal> list = animalService.getAnimaisByTipo(tipo);
 		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping(value = "/msg/{tipo}")
+	public ResponseEntity<List<String>> getMessageByTipo(@PathVariable("tipo") int tipo) {
+		
+		List<String> lista = new ArrayList<>();
+		lista.add(animalService.getMessageByTipo(tipo));
+		return ResponseEntity.ok(lista);
 	}
 	
 	@PostMapping
