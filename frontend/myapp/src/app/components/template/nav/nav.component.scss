@@ -1,22 +1,16 @@
-.block {
-    display: block;
-    width: 100%;
-    border: none;
-    background-color: #126add;
-    color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
-  .block:hover {
-    background-color: #ddd;
-    color: black;
-    
-  }
+.sidenav {
+  background-color: rgb(84, 84, 226);
+  width: 180px;
+}
+.sidenav a{
+  color: rgb(242, 242, 245);
+}
 
-  .content {
-    padding: 16px ;
-    background-color: white;
-    
-    }
+.sidenav i{
+  padding-right: 10px;
+}
+.content {
+padding: 16px ;
+background-color: white;
+
+}

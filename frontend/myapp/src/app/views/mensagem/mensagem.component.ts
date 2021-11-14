@@ -14,7 +14,7 @@ export class MensagemComponent implements OnInit {
   }
 
   ok():void{
-    this.router.navigate(['/mensagem2']);
+    this.router.navigate(['/mensagem-pers']);
   }
   cancel():void{
     this.router.navigate(['/']);

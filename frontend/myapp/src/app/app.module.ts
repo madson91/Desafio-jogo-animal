@@ -10,8 +10,14 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { MensagemComponent } from './views/mensagem/mensagem.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './views/home/home.component';
+import { MensagemPersComponent } from './views/mensagem-pers/mensagem-pers.component';
+import { MensagemImputComponent } from './views/mensagem-imput/mensagem-imput.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -21,7 +27,12 @@ import { HomeComponent } from './views/home/home.component';
     FooterComponent,
     NavComponent,
     MensagemComponent,
-    HomeComponent
+    HomeComponent,
+    MensagemPersComponent,
+    MensagemImputComponent
+    
+    
+    
     
   ],
   imports: [
@@ -31,7 +42,9 @@ import { HomeComponent } from './views/home/home.component';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
