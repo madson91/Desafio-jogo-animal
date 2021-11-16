@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Animal } from 'src/app/components/animal.model';
+import { mensagemDto } from 'src/app/components/animal.model';
 import { AnimalService } from 'src/app/components/animal.service';
 
 @Component({
@@ -10,21 +10,29 @@ import { AnimalService } from 'src/app/components/animal.service';
 })
 export class MensagemImputComponent implements OnInit {
 
-  animal:Animal;   
+  title: string;
+  msgD: mensagemDto;
+  descricaoAnimal: string;
 
-  constructor(private animalService:AnimalService, private router: Router) { }
+  constructor(private animalService: AnimalService, private router: Router) { }
 
   ngOnInit(): void {
+    this.title = this.animalService.title;
+    this.msgD = this.animalService.mensagemDto;
   }
 
-  createAnimal():void {
-    this.animalService.create(this.animal).subscribe(() =>{
-      this.router.navigate(["/mensagem-pers"])
+  createAnimal(): void {
+    this.msgD.descricaoAnimal = this.descricaoAnimal;
+    this.animalService.read(this.msgD).subscribe((obj) => {
+      this.router.navigate(["mensagem-input-caract"])
+      this.animalService.mensagemDto = obj;
+      this.animalService.title = obj.mensagem!;
     })
+
   }
 
-  cancel():void {
-    
+  cancel(): void {
+    this.router.navigate(["mensagem-erro"]);
   }
 
 }

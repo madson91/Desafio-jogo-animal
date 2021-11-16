@@ -16,8 +16,11 @@ import { HomeComponent } from './views/home/home.component';
 import { MensagemPersComponent } from './views/mensagem-pers/mensagem-pers.component';
 import { MensagemImputComponent } from './views/mensagem-imput/mensagem-imput.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MsgVencedoraComponent } from './views/msg-vencedora/msg-vencedora.component';
+import { MensagemPers2Component } from './views/mensagem-pers2/mensagem-pers2.component';
+import { MensagemErroComponent } from './views/mensagem-erro/mensagem-erro.component';
+import { MensagemInputCaractComponent } from './views/mensagem-input-caract/mensagem-input-caract.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,10 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     MensagemComponent,
     HomeComponent,
     MensagemPersComponent,
-    MensagemImputComponent
-    
-    
-    
+    MensagemImputComponent,
+    MsgVencedoraComponent,
+    MensagemPers2Component,
+    MensagemErroComponent,
+    MensagemInputCaractComponent
     
   ],
   imports: [
@@ -44,7 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatCardModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

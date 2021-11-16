@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Animal } from 'src/app/components/animal.model';
+import { mensagemDto } from 'src/app/components/animal.model';
 import { AnimalService } from 'src/app/components/animal.service';
 
 @Component({
@@ -10,34 +10,40 @@ import { AnimalService } from 'src/app/components/animal.service';
 })
 export class MensagemPersComponent implements OnInit {
 
-  public title = "Este animal que você pensou vive na água?";
-  animais: Animal[] = [];
-  msg:string[] = [];
+  title = "Este animal que você pensou vive na água?";
+  msgD: mensagemDto;
 
   constructor(private router: Router, private animalService: AnimalService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.animalService.read().subscribe(animais => {
-      this.animais = animais
-      //console.log(animais)
-    })
   }
 
   ButoonSim(): void {
-    this.animalService.getMessage(this.animalService.TIPO_AGUA).subscribe(msg =>{
-      this.msg  = msg;
-      this.title = msg[0];
+    this.msgD = {
+      resposta: true,
+      tipoAnimal:this.animalService.TIPO_AGUA
+
+    };
+    this.animalService.read(this.msgD).subscribe((obj) => {
+      this.msgD = obj
+      this.animalService.mensagemDto = obj;
+      this.router.navigate(["mensagem-pers2"])
+      this.animalService.title = obj.mensagem!;
       
     })
-      //this.router.navigate(['/mensagem-pers']);
   }
 
   buttonNao(): void {
-    this.animalService.getMessage(this.animalService.TIPO_TERRA).subscribe(msg =>{
-      this.msg  = msg;
-      this.title = msg[0];
-      this.router.navigate(['/mensagem-input']);
+    this.msgD = {
+      resposta: false,
+      tipoAnimal:this.animalService.TIPO_TERRA
+    };
+    this.animalService.read(this.msgD).subscribe((obj) => {
+      this.msgD = obj
+      this.animalService.mensagemDto = obj;
+      this.router.navigate(["mensagem-pers2"])
+      this.animalService.title = obj.mensagem!;
     })
   }
 

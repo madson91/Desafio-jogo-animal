@@ -1,13 +1,19 @@
 export interface Animal {
     id?:number;
     nome:string;
-    tipo:number;
-    caracteristica:string;
+    tipo?:number;
+    caracteristica?:string;
+    checkCaract?:boolean;
 }
 
-export interface mensagem {
-    id:number;
-    descricao:string;
+export interface mensagemDto {
+    
+    animal?:Animal;
+    descricaoAnimal?:string;
+	mensagem?:string
+	caracteristica?:string;
+	tipoAnimal?:number;
+	resposta:boolean;
     
 }
-//export const animais = [];
+
