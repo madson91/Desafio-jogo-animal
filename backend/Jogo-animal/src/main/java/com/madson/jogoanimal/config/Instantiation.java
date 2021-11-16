@@ -23,8 +23,8 @@ public class Instantiation implements CommandLineRunner, WebMvcConfigurer {
 
 		animalRepository.deleteAll();
 
-		Animal animal = new Animal(null, "Macaco", Funcoes.TIPO_TERRA, null);
-		Animal animal2 = new Animal(null, "Tubarão", Funcoes.TIPO_AGUA, null);
+		Animal animal = new Animal(null, "Macaco", Funcoes.TIPO_TERRA, null, false);
+		Animal animal2 = new Animal(null, "Tubarão", Funcoes.TIPO_AGUA, null, false);
 		animalRepository.saveAll(Arrays.asList(animal, animal2));
 
 	}

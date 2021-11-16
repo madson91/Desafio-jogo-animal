@@ -13,11 +13,11 @@ import com.madson.jogoanimal.entities.Animal;
 public interface AnimalRepository extends JpaRepository<Animal, Long>{
 	
 	@Query("SELECT obj FROM Animal AS obj where obj.tipo = :tipo and "
-			+ "obj.caracteristica != null GROUP BY obj.id")
+			+ "obj.caracteristica != null and obj.checkCaract = false GROUP BY obj.id")
 	List<Animal> getAnimaisByTipoCaracNotNull(@Param("tipo") byte tipo);
 	
 	@Query("SELECT obj FROM Animal AS obj where obj.tipo = :tipo "
-			+ "GROUP BY obj.id")
+			+ "ORDER BY obj.id")
 	List<Animal> getAnimaisByTipo(@Param("tipo") byte tipo);
 	
 //	@Query("SELECT  com.madson.jogoanimal.entities.Animal FROM Animal AS obj where obj.tipo = 2 and "

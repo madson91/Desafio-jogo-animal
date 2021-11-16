@@ -17,16 +17,18 @@ public class Animal implements Serializable{
 	private String nome;
 	private byte tipo;
 	private String caracteristica;
+	private Boolean checkCaract;
 	
 	public Animal() {
 	
 	}
 	
-	public Animal(Long id, String nome, byte tipo, String caracteristica) {
+	public Animal(Long id, String nome, byte tipo, String caracteristica, Boolean check) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.caracteristica = caracteristica;
+		this.checkCaract = check;
 	}
 	
 	public Long getId() {
@@ -52,6 +54,14 @@ public class Animal implements Serializable{
 	}
 	public void setCaracteristica(String caracteristica) {
 		this.caracteristica = caracteristica;
+	}
+	
+	public boolean isCheckCaract() {
+		return checkCaract;
+	}
+
+	public void setCheckCaract(Boolean checkCaract) {
+		this.checkCaract = checkCaract;
 	}
 	
 	@Override
