@@ -19,29 +19,43 @@ public class AnimalService {
 
 	public MsgDto getMsgDto(MsgDto msgDto) {
 
+		System.out.println(msgDto);
 		List<Animal> animais = getAnimaisByTipo(msgDto.getTipoAnimal());
-		verificarCaracteristica(msgDto);
+		List<Animal> lista = getAnimaisByTipoCaracNotNull(msgDto.getTipoAnimal());
+//		boolean isCarac = verificarCaracteristica(msgDto);
 
-		if (msgDto.getAnimal() == null) {
+		Animal obj = null;
+		if(lista != null && lista.size()>0)
+			obj = lista.get(0);
+		
+		
+		
+		if (msgDto.getAnimal() == null && obj == null) 
 			return new MsgDto(animais.get(0), null, Funcoes.MSG_ANIMAL);
-		} else {
+//			if (isCarac) {
+//				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_GET_CARCT);
+//			}else if (Funcoes.compareToMsgVencedora(msgDto)) {
+//				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
 			if (msgDto.getDescricaoAnimal() != null && msgDto.getCaracteristica() == null) {
+				
 				String animalAntigo = msgDto.getAnimal().getNome();
 				preencherMsgDtoByAnimal(msgDto);
 				return new MsgDto(msgDto.getAnimal(), animalAntigo, Funcoes.MSG_ANIMAL_SET_CARCT);
-			} else if (msgDto.getCaracteristica()!= null && msgDto.getAnimal().isCheckCaract()) {
-				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_GET_CARCT);
-			} else if (msgDto.getCaracteristica() != null) {
+			}
+////			} else if (msgDto.getCaracteristica() != null && msgDto.getAnimal().isCheckCaract()) {
+////				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_GET_CARCT);
+			if (msgDto.getCaracteristica() != null && msgDto.getAnimal().getCaracteristica() == null) {
 				updateMsgDtoByAnimal(msgDto);
 				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL);
-			} else if (msgDto.getResposta()) {
-				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
-			} else if (!msgDto.getResposta()) {
-				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_PENSOU);
 			}
-
-			return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
-		}
+//			} else if (msgDto.getResposta()) {
+//				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
+//			} else if (!msgDto.getResposta()) {
+//				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_PENSOU);
+//			}
+//
+//			return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
+			return Funcoes.getMsgDtoByMensagem(msgDto,obj);
 	}
 
 	private void updateMsgDtoByAnimal(MsgDto msgDto) {
@@ -63,19 +77,19 @@ public class AnimalService {
 		msgDto.setAnimal(animal);
 	}
 
-	private void verificarCaracteristica(MsgDto msgDto) {
+	private boolean verificarCaracteristica(MsgDto msgDto) {
 
 		List<Animal> lista = getAnimaisByTipoCaracNotNull(msgDto.getTipoAnimal());
-
+		
 		if (lista != null && lista.size() > 0) {
 			Animal animal = lista.get(0);
-			animal.setCheckCaract(true);
+//			animal.setCheckCaract(true);
 			createAnimal(animal);
 			msgDto.setAnimal(animal);
 			msgDto.setCaracteristica(animal.getCaracteristica());
-			
+			return true;
 		}
-
+		return false;
 	}
 
 	public List<Animal> getAnimais() {

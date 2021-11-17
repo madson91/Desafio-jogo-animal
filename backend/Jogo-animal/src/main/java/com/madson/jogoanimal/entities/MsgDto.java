@@ -79,4 +79,12 @@ public class MsgDto {
 		this.resposta = resposta;
 	}
 
+	@Override
+	public String toString() {
+		return "MsgDto [animal=" + animal + ", descricaoAnimal=" + descricaoAnimal + ", mensagem=" + mensagem
+				+ ", caracteristica=" + caracteristica + ", tipoAnimal=" + tipoAnimal + ", resposta=" + resposta + "]";
+	}
+	
+	
+
 }

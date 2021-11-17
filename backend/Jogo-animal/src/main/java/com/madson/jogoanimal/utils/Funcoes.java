@@ -1,6 +1,7 @@
 package com.madson.jogoanimal.utils;
 
 import com.madson.jogoanimal.entities.Animal;
+import com.madson.jogoanimal.entities.MsgDto;
 
 public class Funcoes {
 	
@@ -12,6 +13,10 @@ public class Funcoes {
 	public static byte MSG_ANIMAL_SET_CARCT = 3;
 	public static byte MSG_ANIMAL_GET_CARCT = 4;
 	public static byte MSG_VENCEDORA = 5;
+	
+	private static String getMensagemTipo() {
+		return "Este animal que você pensou vive na água?";
+	}
 	
 	private static String getMensagemAnimal(String animal) {
 		return "O animal que você pensou é "+animal;
@@ -49,7 +54,35 @@ public class Funcoes {
 		
 	}
 	
-	
+	public static boolean compareToMsgVencedora(MsgDto dto) {
+		
+		if(dto.getResposta() && dto.getMensagem().equals(getMensagemAnimal(dto.getAnimal().getNome()))) {
+			return true;
+		}
+		return false;
+	}
+ 	
+	public static MsgDto getMsgDtoByMensagem(MsgDto msgDto, Animal animalComCaracte) { 
+		
+		if(msgDto.getMensagem().equals(getMensagemTipo()) && animalComCaracte != null)
+			return new MsgDto(animalComCaracte, null, Funcoes.MSG_ANIMAL_GET_CARCT);
+		
+		if(msgDto.getMensagem().equals(getMensagemAnimal(msgDto.getAnimal().getNome()))) {
+			if(msgDto.getResposta())
+				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_VENCEDORA);
+			else
+				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_PENSOU);
+		}else if (msgDto.getMensagem().equals(getMensagemGetCaract(msgDto.getAnimal().getCaracteristica()))){
+			if(msgDto.getResposta()) {
+				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL);
+			}else if(animalComCaracte != null && msgDto.getResposta()){
+				return new MsgDto(animalComCaracte, null, Funcoes.MSG_ANIMAL_GET_CARCT);
+			}else {
+				return new MsgDto(msgDto.getAnimal(), null, Funcoes.MSG_ANIMAL_PENSOU);
+			}
+		}
+		return null;
+	}
 	
 
 }
