@@ -23,6 +23,7 @@ export class MensagemImputComponent implements OnInit {
 
   createAnimal(): void {
     this.msgD.descricaoAnimal = this.descricaoAnimal;
+    //this.msgD.caracteristica = "";
     this.animalService.read(this.msgD).subscribe((obj) => {
       this.router.navigate(["mensagem-input-caract"])
       this.animalService.mensagemDto = obj;

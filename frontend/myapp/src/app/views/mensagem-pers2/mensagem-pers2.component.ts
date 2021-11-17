@@ -27,6 +27,8 @@ export class MensagemPers2Component implements OnInit {
       this.msgD = obj
       this.animalService.mensagemDto = obj;
       this.animalService.title = obj.mensagem!; 
+      this.title = obj.mensagem!;
+      //this.router.onSameUrlNavigation = 'reload';
       if(obj.mensagem =="Eu Venci!")
         this.router.navigate(["mensagem-vencedora"])
       
@@ -39,6 +41,8 @@ export class MensagemPers2Component implements OnInit {
       this.msgD = obj
       this.animalService.mensagemDto = obj;
       this.animalService.title = obj.mensagem!; 
+      this.title = obj.mensagem!;
+      //this.router.onSameUrlNavigation = 'reload';
       if(obj.mensagem =="Qual animal você pensou?")
         this.router.navigate(["mensagem-input"])
       

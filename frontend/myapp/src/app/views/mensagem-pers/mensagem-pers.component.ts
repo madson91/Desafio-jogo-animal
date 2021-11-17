@@ -22,7 +22,8 @@ export class MensagemPersComponent implements OnInit {
   ButoonSim(): void {
     this.msgD = {
       resposta: true,
-      tipoAnimal:this.animalService.TIPO_AGUA
+      tipoAnimal:this.animalService.TIPO_AGUA,
+      mensagem:this.title
 
     };
     this.animalService.read(this.msgD).subscribe((obj) => {
@@ -37,7 +38,8 @@ export class MensagemPersComponent implements OnInit {
   buttonNao(): void {
     this.msgD = {
       resposta: false,
-      tipoAnimal:this.animalService.TIPO_TERRA
+      tipoAnimal:this.animalService.TIPO_TERRA,
+      mensagem:this.title
     };
     this.animalService.read(this.msgD).subscribe((obj) => {
       this.msgD = obj
